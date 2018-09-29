@@ -11,7 +11,16 @@ public class Homework1 {
     public static void main(String [] args) {
         partB1();
         partB2();
+    }
 
+    public static void runJobs(List<Job> jobList) {
+        // loop to take in jobs, each loop is 1 ms
+        int finalTime = jobList.get(jobList.size() - 1).getArrivalTime() + jobList.get(jobList.size() - 1).getProcessingTime();
+        int ms = 0;
+        while(ms <= finalTime ) {
+            // do processing stuff
+            ms++;
+        }
     }
 
     public static void partB1() {
@@ -21,17 +30,8 @@ public class Homework1 {
             arrTime = rand.nextInt((arrTime + 12            ) - arrTime + 1) + (arrTime + 1);
             int procTime = rand.nextInt((200 - 3) + 1) + 3;
             jobList1.add(new Job(arrTime, procTime));
-            System.out.println("arrTime: " + arrTime + " -- procTime: " + procTime);
         }
-
-        // loop to take in jobs, each loop is 1 ms
-        int finalTime = jobList1.get(jobList1.size() - 1).getArrivalTime() + jobList1.get(jobList1.size() - 1).getProcessingTime();
-        int ms = 0;
-        while(ms <= finalTime ) {
-            // do processing stuff
-            ms++;
-        }
-
+        runJobs(jobList1);
     }
 
     public static void partB2() {
@@ -59,7 +59,7 @@ public class Homework1 {
         jobList2.add(job11);
         Job job12 = new Job(95, 8);
         jobList2.add(job12);
-        System.out.println("job list from b2: " + jobList2.size());
+        runJobs(jobList2);
     }
 
     public void partC() {

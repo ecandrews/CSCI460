@@ -1,3 +1,7 @@
+/*
+Author: Elizabeth Andrews
+Written for CSCI460 - Operating Systems at Montana State University
+ */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,32 +18,35 @@ public class Homework1 {
     public static void main(String [] args) {
         partB1();
         partB2();
+        // partC();
     }
 
-    // run the given jobs on three processors
-    // returns the time once all the jobs are finished
+    /*
+    Run the jobs given in jobList using a circular procedure with three processors
+    Returns the number of milliseconds since procedure began
+     */
     public static int runJobs(List<Job> jobList) {
 
+        // instantiate processors, processor array, and other variables
         proc1 = new Processor();
         proc2 = new Processor();
         proc3 = new Processor();
         procArray = new Processor[] { proc1, proc2, proc3 };
-
-        // loop to take in jobs, each loop is 1 ms
-        int finalTime = jobList.get(jobList.size() - 1).getArrivalTime() + jobList.get(jobList.size() - 1).getProcessingTime();
         int ms = 0;
         int nextProc = 0;
         Job lastJob = jobList.get(jobList.size() - 1);
 
-        // while the last job is not complete
+        // continue to run while the last job in the jobList has not been completed
         while(lastJob.getCompleted() != true) {
 
-            // update processors
+            // check if any jobs assigned to a processor have completed
             for(Processor proc : procArray) {
                 // if the processor has a job at the moment
                 if(proc.getIsBusy()) {
+                    // if the processor's current job's end time is the current time, end the job
                     if(proc.getCurrentJob().getEndTime() == ms) {
                         proc.endCurrentJob(ms);
+                        // if current job has ended, add any job from the queue to the processor
                         if(!proc.getJobQueue().isEmpty()) {
                             proc.setCurrentJob(proc.getJobQueue().get(0), ms);
                             proc.popFromQueue();
@@ -48,9 +55,10 @@ public class Homework1 {
                 }
             }
 
-            // check next arriving job
+            // if there is another job in the jobList and it's arrival time is the current time, add it to the next
+            // processor to be used
             if(!jobList.isEmpty() && jobList.get(0).getArrivalTime() == ms) {
-                // if next processor is not busy
+                // if next processor is not busy, set the current job, otherwise add the job to the processor's queue
                 if(procArray[nextProc].getIsBusy() == false) {
                     procArray[nextProc].setCurrentJob(jobList.get(0), ms);
                 } else {
@@ -59,7 +67,7 @@ public class Homework1 {
                 jobList.remove(0);
             }
 
-            // set next processor
+            // set next processor to be used and increase current millisecond
             nextProc = (nextProc + 1) % procArray.length;
             ms++;
         }
@@ -75,7 +83,7 @@ public class Homework1 {
         // run 100 times to get statistics
         for(int i = 0; i < 100; i++) {
 
-            // initialize jobs and run
+            // initialize jobs, add them to the jobList, and run
             for(int j = 0; j < 100; j++) {
                 int procTime = rand.nextInt((500 - 1) + 1) + 1;
                 jobList1.add(new Job(j, procTime));
@@ -96,7 +104,7 @@ public class Homework1 {
     }
 
     public static void partB2() {
-        // create jobs and add them to the jobList
+        // initialize jobs, add them to the jobList, and run
         Job job1 = new Job(4,9);
         jobList2.add(job1);
         Job job2 = new Job(15, 2);
@@ -131,6 +139,8 @@ public class Homework1 {
     }
 
     public void partC() {
-
+        // design and code a method which can beat the CIRCULAR method
+        // test against the 12 jobs from partB2
+        // also test on jobs from partB1
     }
 }

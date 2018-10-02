@@ -18,7 +18,7 @@ public class Homework1 {
     public static void main(String [] args) {
         partB1();
         partB2();
-        // partC();
+        partC();
     }
 
     /*
@@ -58,6 +58,54 @@ public class Homework1 {
             // if there is another job in the jobList and it's arrival time is the current time, add it to the next
             // processor to be used
             if(!jobList.isEmpty() && jobList.get(0).getArrivalTime() == ms) {
+                // if next processor is not busy, set the current job, otherwise add the job to the processor's queue
+                if(procArray[nextProc].getIsBusy() == false) {
+                    procArray[nextProc].setCurrentJob(jobList.get(0), ms);
+                } else {
+                    procArray[nextProc].addJobToQueue(jobList.get(0));
+                }
+                jobList.remove(0);
+            }
+
+            // set next processor to be used and increase current millisecond
+            nextProc = (nextProc + 1) % procArray.length;
+            ms++;
+        }
+        return ms;
+    }
+
+    public static int runJobsPartC(List<Job> jobList) {
+        // instantiate processors, processor array, and other variables
+        proc1 = new Processor();
+        proc2 = new Processor();
+        proc3 = new Processor();
+        procArray = new Processor[] { proc1, proc2, proc3 };
+        int ms = 0;
+        int nextProc = 0;
+        Job lastJob = jobList.get(jobList.size() - 1);
+
+        // continue to run while the last job in the jobList has not been completed
+        while(lastJob.getCompleted() != true) {
+
+            // check if any jobs assigned to a processor have completed
+            for(Processor proc : procArray) {
+                // if the processor has a job at the moment
+                if(proc.getIsBusy()) {
+                    // if the processor's current job's end time is the current time, end the job
+                    if(proc.getCurrentJob().getEndTime() == ms) {
+                        proc.endCurrentJob(ms);
+                        // if current job has ended, add any job from the queue to the processor
+                        if(!proc.getJobQueue().isEmpty()) {
+                            proc.setCurrentJob(proc.getJobQueue().get(0), ms);
+                            proc.popFromQueue();
+                        }
+                    }
+                }
+            }
+
+            // if there is another job in the jobList and it's arrival time is the current time, add it to the next
+            // processor to be used
+            if(!jobList.isEmpty() && jobList.get(0).getArrivalTime() <= ms) {
                 // if next processor is not busy, set the current job, otherwise add the job to the processor's queue
                 if(procArray[nextProc].getIsBusy() == false) {
                     procArray[nextProc].setCurrentJob(jobList.get(0), ms);
@@ -135,12 +183,82 @@ public class Homework1 {
         System.out.println("~~~~~~~~~~ PART B2 ~~~~~~~~~~\n");
         System.out.println("Arrival time of first job (in ms): 4\n");
         System.out.println("Finish time of last job (in ms): " + finalRunTime + "\n");
-        System.out.println("Overall turnaround time: " + (finalRunTime - 4) + "\n");
+        System.out.println("Overall turnaround time: " + (finalRunTime - 4) + "\n\n\n");
     }
 
-    public void partC() {
-        // design and code a method which can beat the CIRCULAR method
-        // test against the 12 jobs from partB2
-        // also test on jobs from partB1
+    public static void partC() {
+        Random rand = new Random();
+        int part1minRunTime = 1000000;
+        int part1maxRunTime = 0;
+        int sumRunTime = 0;
+        int part1FinalRunTime = 0;
+        jobList1 = new ArrayList();
+
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                int procTime = rand.nextInt((500 - 1) + 1) + 1;
+                jobList1.add(new Job(j, procTime));
+            }
+            jobList1 = sortJobList(jobList1);
+            part1FinalRunTime = runJobsPartC(jobList1);
+
+            if(part1FinalRunTime < part1minRunTime) { part1minRunTime = part1FinalRunTime; }
+            if(part1FinalRunTime > part1maxRunTime) { part1maxRunTime = part1FinalRunTime; }
+            sumRunTime = sumRunTime + part1FinalRunTime;
+        }
+
+        jobList2 = new ArrayList();
+        Job job1 = new Job(15, 2);
+        jobList2.add(job1);
+        Job job2 = new Job(20, 3);
+        jobList2.add(job2);
+        Job job3 = new Job(35, 7);
+        jobList2.add(job3);
+        Job job4 = new Job(95, 8);
+        jobList2.add(job4);
+        Job job5 = new Job(4,9);
+        jobList2.add(job5);
+        Job job6 = new Job(18, 16);
+        jobList2.add(job6);
+        Job job7 = new Job(26, 29);
+        jobList2.add(job7);
+        Job job8 = new Job(88, 73);
+        jobList2.add(job8);
+        Job job9 = new Job(45, 170);
+        jobList2.add(job9);
+        Job job10 = new Job(83, 178);
+        jobList2.add(job10);
+        Job job11 = new Job(57, 180);
+        jobList2.add(job11);
+        Job job12 = new Job(29, 198);
+        jobList2.add(job12);
+        int part2FinalRunTime = runJobsPartC(jobList2);
+
+        System.out.println("~~~~~~~~~~ PART C ~~~~~~~~~~\n");
+
+        System.out.println("From test data of 12 jobs:\n");
+        System.out.println("Arrival time of first job (in ms): 4\n");
+        System.out.println("Finish time of last job (in ms): " + part1FinalRunTime + "\n");
+        System.out.println("Overall turnaround time: " + (part1FinalRunTime - 4) + "\n\n\n");
+
+        System.out.println("From randomly generated test data for 100 jobs:\n");
+        System.out.println("Minimum turnaround time: " + part1minRunTime + "\n");
+        System.out.println("Maximum turnaround time: " + part1maxRunTime + "\n");
+        System.out.println("Average turnaround time: " + (sumRunTime / 100) + "\n\n\n");
+    }
+
+    public static List<Job> sortJobList(List<Job> jobs) {
+        int n = jobs.size();
+        int i, j;
+        for(i = 0; i < n - 1; i++) {
+            for (j = 0; j < n - i - 1; j++) {
+                if (jobs.get(j).getProcessingTime() > jobs.get(j + 1).getProcessingTime()) {
+                    Job temp = jobs.get(j);
+                    jobs.set(j, jobs.get(j+1));
+                    jobs.set(j+1, temp);
+                }
+            }
+        }
+        return jobs;
     }
 }

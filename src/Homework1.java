@@ -130,7 +130,8 @@ public class Homework1 {
         int minRunTime = 1000000;
         int maxRunTime = 0;
         int sumRunTime = 0;
-        int startTime = 0;
+        int startTime;
+        ArrayList<Integer> turnaroundTimes = new ArrayList<Integer>();
 
         // run 100 times to get statistics
         for(int i = 0; i < 100; i++) {
@@ -142,6 +143,7 @@ public class Homework1 {
             }
             startTime = jobList1.get(0).getArrivalTime();
             int finalRunTime = runJobs(jobList1) - startTime;
+            turnaroundTimes.add(finalRunTime);
 
             if(finalRunTime < minRunTime) { minRunTime = finalRunTime; }
             if(finalRunTime > maxRunTime) { maxRunTime = finalRunTime; }
@@ -153,8 +155,8 @@ public class Homework1 {
         System.out.println("After running program 100 times these were the results (in ms):\n");
         System.out.println("Minimum turnaround time: " + minRunTime + "\n");
         System.out.println("Maximum turnaround time: " + maxRunTime + "\n");
-        System.out.println("Average turnaround time: " + (sumRunTime / 100) + "\n\n\n");
-        System.out.println("Standard deviation: " + calcStdDev(jobList1, (sumRunTime / 100)));
+        System.out.println("Average turnaround time: " + (sumRunTime / 100) + "\n");
+        System.out.println("Standard deviation: " + (int)calcStdDev(turnaroundTimes, (sumRunTime / 100)) + "\n\n\n");
     }
 
     public static void partB2() {
@@ -197,7 +199,8 @@ public class Homework1 {
         int minRunTime = 1000000;
         int maxRunTime = 0;
         int sumRunTime = 0;
-        int startTime = 0;
+        int startTime;
+        ArrayList<Integer> turnaroundTimes = new ArrayList();
 
         // run 100 times to get statistics
         for(int i = 0; i < 100; i++) {
@@ -209,6 +212,7 @@ public class Homework1 {
             }
             startTime = jobList3.get(0).getArrivalTime();
             int part1finalRunTime = runJobsPartC(jobList3) - startTime;
+            turnaroundTimes.add(part1finalRunTime);
 
             if(part1finalRunTime < minRunTime) { minRunTime = part1finalRunTime; }
             if(part1finalRunTime > maxRunTime) { maxRunTime = part1finalRunTime; }
@@ -245,8 +249,8 @@ public class Homework1 {
         System.out.println("From randomly generated test data for 100 jobs:\n");
         System.out.println("Minimum turnaround time: " + minRunTime + "\n");
         System.out.println("Maximum turnaround time: " + maxRunTime + "\n");
-        System.out.println("Average turnaround time: " + (sumRunTime / 100) + "\n\n\n");
-        System.out.println("Standard deviation: " + calcStdDev(jobList3, (sumRunTime / 100)));
+        System.out.println("Average turnaround time: " + (sumRunTime / 100) + "\n");
+        System.out.println("Standard deviation: " + (int)calcStdDev(turnaroundTimes, (sumRunTime / 100)) + "\n\n\n");
 
         System.out.println("From test data of 12 jobs:\n");
         System.out.println("Arrival time of first job (in ms): 4\n");
@@ -254,12 +258,12 @@ public class Homework1 {
         System.out.println("Overall turnaround time: " + (part2minRunTime - 4) + "\n\n\n");
     }
 
-    public static int calcStdDev(List<Job> jobs, int mean) {
-
-        for(int i = 0; i < jobs.size(); i++) {
-
+    public static double calcStdDev(ArrayList<Integer> times, int mean) {
+        double sumTimes = 0;
+        for(int i = 0; i < times.size(); i++) {
+            times.set(i, (times.get(i) - mean) * (times.get(i) - mean));
+            sumTimes = sumTimes + times.get(i);
         }
-
-        return 0;
+        return Math.sqrt(sumTimes/100);
     }
 }

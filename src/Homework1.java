@@ -12,8 +12,11 @@ public class Homework1 {
     private static Processor proc2;
     private static Processor proc3;
     private static Processor[] procArray;
+    private static List<Job> jobsWaiting = new ArrayList();
     private static List<Job> jobList1 = new ArrayList();
     private static List<Job> jobList2 = new ArrayList();
+    private static List<Job> jobList3 = new ArrayList();
+    private static List<Job> jobList4 = new ArrayList();
 
     public static void main(String [] args) {
         partB1();
@@ -26,7 +29,6 @@ public class Homework1 {
     Returns the number of milliseconds since procedure began
      */
     public static int runJobs(List<Job> jobList) {
-
         // instantiate processors, processor array, and other variables
         proc1 = new Processor();
         proc2 = new Processor();
@@ -95,9 +97,9 @@ public class Homework1 {
                     if(proc.getCurrentJob().getEndTime() == ms) {
                         proc.endCurrentJob(ms);
                         // if current job has ended, add any job from the queue to the processor
-                        if(!proc.getJobQueue().isEmpty()) {
-                            proc.setCurrentJob(proc.getJobQueue().get(0), ms);
-                            proc.popFromQueue();
+                        if(!jobsWaiting.isEmpty()) {
+                            proc.setCurrentJob(jobsWaiting.get(0), ms);
+                            jobsWaiting.remove(0);
                         }
                     }
                 }
@@ -105,12 +107,12 @@ public class Homework1 {
 
             // if there is another job in the jobList and it's arrival time is the current time, add it to the next
             // processor to be used
-            if(!jobList.isEmpty() && jobList.get(0).getArrivalTime() <= ms) {
+            if(!jobList.isEmpty() && jobList.get(0).getArrivalTime() == ms) {
                 // if next processor is not busy, set the current job, otherwise add the job to the processor's queue
                 if(procArray[nextProc].getIsBusy() == false) {
                     procArray[nextProc].setCurrentJob(jobList.get(0), ms);
                 } else {
-                    procArray[nextProc].addJobToQueue(jobList.get(0));
+                    jobsWaiting.add(jobList.get(0));
                 }
                 jobList.remove(0);
             }
@@ -120,6 +122,7 @@ public class Homework1 {
             ms++;
         }
         return ms;
+
     }
 
     public static void partB1() {
@@ -188,77 +191,60 @@ public class Homework1 {
 
     public static void partC() {
         Random rand = new Random();
-        int part1minRunTime = 1000000;
-        int part1maxRunTime = 0;
+        int minRunTime = 1000000;
+        int maxRunTime = 0;
         int sumRunTime = 0;
-        int part1FinalRunTime = 0;
-        jobList1 = new ArrayList();
 
+        // run 100 times to get statistics
         for(int i = 0; i < 100; i++) {
+
+            // initialize jobs, add them to the jobList, and run
             for(int j = 0; j < 100; j++) {
                 int procTime = rand.nextInt((500 - 1) + 1) + 1;
-                jobList1.add(new Job(j, procTime));
+                jobList3.add(new Job(j, procTime));
             }
-            jobList1 = sortJobList(jobList1);
-            part1FinalRunTime = runJobsPartC(jobList1);
+            int part1minRunTime = runJobsPartC(jobList3);
 
-            if(part1FinalRunTime < part1minRunTime) { part1minRunTime = part1FinalRunTime; }
-            if(part1FinalRunTime > part1maxRunTime) { part1maxRunTime = part1FinalRunTime; }
-            sumRunTime = sumRunTime + part1FinalRunTime;
+            if(part1minRunTime < minRunTime) { minRunTime = part1minRunTime; }
+            if(part1minRunTime > maxRunTime) { maxRunTime = part1minRunTime; }
+            sumRunTime = sumRunTime + part1minRunTime;
         }
 
-        jobList2 = new ArrayList();
-        Job job1 = new Job(15, 2);
-        jobList2.add(job1);
-        Job job2 = new Job(20, 3);
-        jobList2.add(job2);
-        Job job3 = new Job(35, 7);
-        jobList2.add(job3);
-        Job job4 = new Job(95, 8);
-        jobList2.add(job4);
-        Job job5 = new Job(4,9);
-        jobList2.add(job5);
-        Job job6 = new Job(18, 16);
-        jobList2.add(job6);
-        Job job7 = new Job(26, 29);
-        jobList2.add(job7);
-        Job job8 = new Job(88, 73);
-        jobList2.add(job8);
-        Job job9 = new Job(45, 170);
-        jobList2.add(job9);
+        Job job1 = new Job(4,9);
+        jobList4.add(job1);
+        Job job2 = new Job(15, 2);
+        jobList4.add(job2);
+        Job job3 = new Job(18, 16);
+        jobList4.add(job3);
+        Job job4 = new Job(20, 3);
+        jobList4.add(job4);
+        Job job5 = new Job(26, 29);
+        jobList4.add(job5);
+        Job job6 = new Job(29, 198);
+        jobList4.add(job6);
+        Job job7 = new Job(35, 7);
+        jobList4.add(job7);
+        Job job8 = new Job(45, 170);
+        jobList4.add(job8);
+        Job job9 = new Job(57, 180);
+        jobList4.add(job9);
         Job job10 = new Job(83, 178);
-        jobList2.add(job10);
-        Job job11 = new Job(57, 180);
-        jobList2.add(job11);
-        Job job12 = new Job(29, 198);
-        jobList2.add(job12);
-        int part2FinalRunTime = runJobsPartC(jobList2);
+        jobList4.add(job10);
+        Job job11 = new Job(88, 73);
+        jobList4.add(job11);
+        Job job12 = new Job(95, 8);
+        jobList4.add(job12);
+        int part2minRunTime = runJobsPartC(jobList4);
 
         System.out.println("~~~~~~~~~~ PART C ~~~~~~~~~~\n");
+        System.out.println("From randomly generated test data for 100 jobs:\n");
+        System.out.println("Minimum turnaround time: " + minRunTime + "\n");
+        System.out.println("Maximum turnaround time: " + maxRunTime + "\n");
+        System.out.println("Average turnaround time: " + (sumRunTime / 100) + "\n\n\n");
 
         System.out.println("From test data of 12 jobs:\n");
         System.out.println("Arrival time of first job (in ms): 4\n");
-        System.out.println("Finish time of last job (in ms): " + part1FinalRunTime + "\n");
-        System.out.println("Overall turnaround time: " + (part1FinalRunTime - 4) + "\n\n\n");
-
-        System.out.println("From randomly generated test data for 100 jobs:\n");
-        System.out.println("Minimum turnaround time: " + part1minRunTime + "\n");
-        System.out.println("Maximum turnaround time: " + part1maxRunTime + "\n");
-        System.out.println("Average turnaround time: " + (sumRunTime / 100) + "\n\n\n");
-    }
-
-    public static List<Job> sortJobList(List<Job> jobs) {
-        int n = jobs.size();
-        int i, j;
-        for(i = 0; i < n - 1; i++) {
-            for (j = 0; j < n - i - 1; j++) {
-                if (jobs.get(j).getProcessingTime() > jobs.get(j + 1).getProcessingTime()) {
-                    Job temp = jobs.get(j);
-                    jobs.set(j, jobs.get(j+1));
-                    jobs.set(j+1, temp);
-                }
-            }
-        }
-        return jobs;
+        System.out.println("Finish time of last job (in ms): " + part2minRunTime + "\n");
+        System.out.println("Overall turnaround time: " + (part2minRunTime - 4) + "\n\n\n");
     }
 }

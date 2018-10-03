@@ -48,7 +48,7 @@ public class Homework1 {
                     // if the processor's current job's end time is the current time, end the job
                     if(proc.getCurrentJob().getEndTime() == ms) {
                         proc.endCurrentJob(ms);
-                        // if current job has ended, add any job from the queue to the processor
+                        // if current job has ended, add any job from the processor's queue to the processor
                         if(!proc.getJobQueue().isEmpty()) {
                             proc.setCurrentJob(proc.getJobQueue().get(0), ms);
                             proc.popFromQueue();
@@ -57,8 +57,10 @@ public class Homework1 {
                 }
             }
 
-            // if there is another job in the jobList and it's arrival time is the current time, add it to the next
-            // processor to be used
+            /*
+            if there is another job in the jobList and it's arrival time is the current time, add it to the next
+            processor to be used
+             */
             if(!jobList.isEmpty() && jobList.get(0).getArrivalTime() == ms) {
                 // if next processor is not busy, set the current job, otherwise add the job to the processor's queue
                 if(procArray[nextProc].getIsBusy() == false) {
@@ -76,6 +78,10 @@ public class Homework1 {
         return ms;
     }
 
+    /*
+    Run the jobs given in jobList using a faster procedure with three processors
+    Returns the number of milliseconds since procedure began
+     */
     public static int runJobsPartC(List<Job> jobList) {
         // instantiate processors, processor array, and other variables
         proc1 = new Processor();
@@ -96,7 +102,7 @@ public class Homework1 {
                     // if the processor's current job's end time is the current time, end the job
                     if(proc.getCurrentJob().getEndTime() == ms) {
                         proc.endCurrentJob(ms);
-                        // if current job has ended, add any job from the queue to the processor
+                        // if current job has ended, add any job from the queue of jobs waiting to the processor
                         if(!jobsWaiting.isEmpty()) {
                             proc.setCurrentJob(jobsWaiting.get(0), ms);
                             jobsWaiting.remove(0);
@@ -105,10 +111,12 @@ public class Homework1 {
                 }
             }
 
-            // if there is another job in the jobList and it's arrival time is the current time, add it to the next
-            // processor to be used
+            /*
+            if there is another job in the jobList and it's arrival time is the current time, add it to the next
+            processor to be used
+             */
             if(!jobList.isEmpty() && jobList.get(0).getArrivalTime() == ms) {
-                // if next processor is not busy, set the current job, otherwise add the job to the processor's queue
+                // if next processor is not busy, set the current job, otherwise add the job to the jobs waiting queue
                 if(procArray[nextProc].getIsBusy() == false) {
                     procArray[nextProc].setCurrentJob(jobList.get(0), ms);
                 } else {
@@ -245,6 +253,7 @@ public class Homework1 {
         jobList4.add(job12);
         int part2minRunTime = runJobsPartC(jobList4);
 
+        // print results of partc
         System.out.println("~~~~~~~~~~ PART C ~~~~~~~~~~\n");
         System.out.println("From randomly generated test data for 100 jobs:\n");
         System.out.println("Minimum turnaround time: " + minRunTime + "\n");
@@ -258,6 +267,9 @@ public class Homework1 {
         System.out.println("Overall turnaround time: " + (part2minRunTime - 4) + "\n\n\n");
     }
 
+    /*
+    Calculates the standard deviation given a list of numbers and their mean
+     */
     public static double calcStdDev(ArrayList<Integer> times, int mean) {
         double sumTimes = 0;
         for(int i = 0; i < times.size(); i++) {

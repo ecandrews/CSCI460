@@ -1,0 +1,48 @@
+
+~~~~~~~~~~ PART B1 ~~~~~~~~~~
+
+After running program 100 times these were the results (in ms):
+
+Minimum turnaround time: 6430
+
+Maximum turnaround time: 10165
+
+Average turnaround time: 8472
+
+Standard deviation: 733
+
+
+
+~~~~~~~~~~ PART B2 ~~~~~~~~~~
+
+Arrival time of first job (in ms): 4
+
+Finish time of last job (in ms): 447
+
+Overall turnaround time: 443
+
+
+
+~~~~~~~~~~ PART C ~~~~~~~~~~
+
+From randomly generated test data for 100 jobs:
+
+Minimum turnaround time: 7202
+
+Maximum turnaround time: 9983
+
+Average turnaround time: 8415
+
+Standard deviation: 500
+
+
+
+From test data of 12 jobs:
+
+Arrival time of first job (in ms): 4
+
+Finish time of last job (in ms): 241
+
+Overall turnaround time: 237
+
+

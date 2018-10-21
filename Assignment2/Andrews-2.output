@@ -1,0 +1,436 @@
+Producer1:
+	List size before appending: 3
+	Value of node appended: 19
+	List size after appending: 4
+Producer2:
+	List size before appending: 4
+	Value of node appended: 6
+	List size after appending: 5
+Consumer2:
+	List size before removing: 5
+	Value of node removed: 14
+	List size after removing: 4
+Producer1:
+	List size before appending: 4
+	Value of node appended: 23
+	List size after appending: 5
+Producer2:
+	List size before appending: 5
+	Value of node appended: 22
+	List size after appending: 6
+Consumer1:
+	List size before removing: 6
+	Value of node removed: 9
+	List size after removing: 5
+Producer1:
+	List size before appending: 5
+	Value of node appended: 17
+	List size after appending: 6
+Producer2:
+	List size before appending: 6
+	Value of node appended: 40
+	List size after appending: 7
+Consumer1:
+	List size before removing: 7
+	Value of node removed: 33
+	List size after removing: 6
+Producer1:
+	List size before appending: 6
+	Value of node appended: 3
+	List size after appending: 7
+Producer2:
+	List size before appending: 7
+	Value of node appended: 40
+	List size after appending: 8
+Consumer1:
+	List size before removing: 8
+	Value of node removed: 19
+	List size after removing: 7
+Producer1:
+	List size before appending: 7
+	Value of node appended: 37
+	List size after appending: 8
+Producer2:
+	List size before appending: 8
+	Value of node appended: 8
+	List size after appending: 9
+Consumer2:
+	List size before removing: 9
+	Value of node removed: 6
+	List size after removing: 8
+Producer1:
+	List size before appending: 8
+	Value of node appended: 49
+	List size after appending: 9
+Producer2:
+	List size before appending: 9
+	Value of node appended: 2
+	List size after appending: 10
+Consumer1:
+	List size before removing: 10
+	Value of node removed: 23
+	List size after removing: 9
+Producer1:
+	List size before appending: 9
+	Value of node appended: 31
+	List size after appending: 10
+Producer2:
+	List size before appending: 10
+	Value of node appended: 22
+	List size after appending: 11
+Consumer2:
+	List size before removing: 11
+	Value of node removed: 22
+	List size after removing: 10
+Producer1:
+	List size before appending: 10
+	Value of node appended: 25
+	List size after appending: 11
+Producer2:
+	List size before appending: 11
+	Value of node appended: 44
+	List size after appending: 12
+Consumer1:
+	List size before removing: 12
+	Value of node removed: 17
+	List size after removing: 11
+Producer1:
+	List size before appending: 11
+	Value of node appended: 17
+	List size after appending: 12
+Producer2:
+	List size before appending: 12
+	Value of node appended: 18
+	List size after appending: 13
+Consumer2:
+	List size before removing: 13
+	Value of node removed: 40
+	List size after removing: 12
+Producer1:
+	List size before appending: 12
+	Value of node appended: 41
+	List size after appending: 13
+Producer2:
+	List size before appending: 13
+	Value of node appended: 6
+	List size after appending: 14
+Consumer1:
+	List size before removing: 14
+	Value of node removed: 3
+	List size after removing: 13
+Producer1:
+	List size before appending: 13
+	Value of node appended: 5
+	List size after appending: 14
+Producer2:
+	List size before appending: 14
+	Value of node appended: 48
+	List size after appending: 15
+Consumer2:
+	List size before removing: 15
+	Value of node removed: 40
+	List size after removing: 14
+Producer1:
+	List size before appending: 14
+	Value of node appended: 49
+	List size after appending: 15
+Producer2:
+	List size before appending: 15
+	Value of node appended: 42
+	List size after appending: 16
+Consumer1:
+	List size before removing: 16
+	Value of node removed: 37
+	List size after removing: 15
+Producer1:
+	List size before appending: 15
+	Value of node appended: 35
+	List size after appending: 16
+Producer2:
+	List size before appending: 16
+	Value of node appended: 38
+	List size after appending: 17
+Consumer2:
+	List size before removing: 17
+	Value of node removed: 8
+	List size after removing: 16
+Producer1:
+	List size before appending: 16
+	Value of node appended: 19
+	List size after appending: 17
+Producer2:
+	List size before appending: 17
+	Value of node appended: 16
+	List size after appending: 18
+Consumer1:
+	List size before removing: 18
+	Value of node removed: 49
+	List size after removing: 17
+Producer1:
+	List size before appending: 17
+	Value of node appended: 3
+	List size after appending: 18
+Producer2:
+	List size before appending: 18
+	Value of node appended: 26
+	List size after appending: 19
+Consumer2:
+	List size before removing: 19
+	Value of node removed: 2
+	List size after removing: 18
+Producer1:
+	List size before appending: 18
+	Value of node appended: 41
+	List size after appending: 19
+Producer2:
+	List size before appending: 19
+	Value of node appended: 36
+	List size after appending: 20
+Consumer1:
+	List size before removing: 20
+	Value of node removed: 31
+	List size after removing: 19
+Producer1:
+	List size before appending: 19
+	Value of node appended: 23
+	List size after appending: 20
+Producer2:
+	List size before appending: 20
+	Value of node appended: 12
+	List size after appending: 21
+Consumer2:
+	List size before removing: 21
+	Value of node removed: 22
+	List size after removing: 20
+Producer1:
+	List size before appending: 20
+	Value of node appended: 21
+	List size after appending: 21
+Producer2:
+	List size before appending: 21
+	Value of node appended: 2
+	List size after appending: 22
+Consumer1:
+	List size before removing: 22
+	Value of node removed: 25
+	List size after removing: 21
+Producer1:
+	List size before appending: 21
+	Value of node appended: 9
+	List size after appending: 22
+Producer2:
+	List size before appending: 22
+	Value of node appended: 16
+	List size after appending: 23
+Consumer2:
+	List size before removing: 23
+	Value of node removed: 44
+	List size after removing: 22
+Producer1:
+	List size before appending: 22
+	Value of node appended: 23
+	List size after appending: 23
+Producer2:
+	List size before appending: 23
+	Value of node appended: 26
+	List size after appending: 24
+Consumer1:
+	List size before removing: 24
+	Value of node removed: 17
+	List size after removing: 23
+Producer1:
+	List size before appending: 23
+	Value of node appended: 7
+	List size after appending: 24
+Producer2:
+	List size before appending: 24
+	Value of node appended: 32
+	List size after appending: 25
+Consumer2:
+	List size before removing: 25
+	Value of node removed: 18
+	List size after removing: 24
+Producer1:
+	List size before appending: 24
+	Value of node appended: 33
+	List size after appending: 25
+Producer2:
+	List size before appending: 25
+	Value of node appended: 24
+	List size after appending: 26
+Consumer1:
+	List size before removing: 26
+	Value of node removed: 41
+	List size after removing: 25
+Producer1:
+	List size before appending: 25
+	Value of node appended: 41
+	List size after appending: 26
+Producer2:
+	List size before appending: 26
+	Value of node appended: 44
+	List size after appending: 27
+Consumer2:
+	List size before removing: 27
+	Value of node removed: 6
+	List size after removing: 26
+Producer1:
+	List size before appending: 26
+	Value of node appended: 47
+	List size after appending: 27
+Producer2:
+	List size before appending: 27
+	Value of node appended: 28
+	List size after appending: 28
+Consumer1:
+	List size before removing: 28
+	Value of node removed: 5
+	List size after removing: 27
+Producer1:
+	List size before appending: 27
+	Value of node appended: 47
+	List size after appending: 28
+Producer2:
+	List size before appending: 28
+	Value of node appended: 24
+	List size after appending: 29
+Consumer2:
+	List size before removing: 29
+	Value of node removed: 48
+	List size after removing: 28
+Producer1:
+	List size before appending: 28
+	Value of node appended: 39
+	List size after appending: 29
+Producer2:
+	List size before appending: 29
+	Value of node appended: 30
+	List size after appending: 30
+Consumer1:
+	List size before removing: 30
+	Value of node removed: 49
+	List size after removing: 29
+Producer1:
+	List size before appending: 29
+	Value of node appended: 1
+	List size after appending: 30
+Consumer2:
+	List size before removing: 30
+	Value of node removed: 42
+	List size after removing: 29
+Consumer1:
+	List size before removing: 29
+	Value of node removed: 35
+	List size after removing: 28
+Consumer2:
+	List size before removing: 28
+	Value of node removed: 38
+	List size after removing: 27
+Consumer1:
+	List size before removing: 27
+	Value of node removed: 19
+	List size after removing: 26
+Consumer2:
+	List size before removing: 26
+	Value of node removed: 16
+	List size after removing: 25
+Consumer1:
+	List size before removing: 25
+	Value of node removed: 3
+	List size after removing: 24
+Consumer2:
+	List size before removing: 24
+	Value of node removed: 26
+	List size after removing: 23
+Consumer1:
+	List size before removing: 23
+	Value of node removed: 41
+	List size after removing: 22
+Consumer2:
+	List size before removing: 22
+	Value of node removed: 36
+	List size after removing: 21
+Consumer1:
+	List size before removing: 21
+	Value of node removed: 23
+	List size after removing: 20
+Consumer2:
+	List size before removing: 20
+	Value of node removed: 12
+	List size after removing: 19
+Consumer1:
+	List size before removing: 19
+	Value of node removed: 21
+	List size after removing: 18
+Consumer2:
+	List size before removing: 18
+	Value of node removed: 2
+	List size after removing: 17
+Consumer1:
+	List size before removing: 17
+	Value of node removed: 9
+	List size after removing: 16
+Consumer2:
+	List size before removing: 16
+	Value of node removed: 16
+	List size after removing: 15
+Consumer1:
+	List size before removing: 15
+	Value of node removed: 23
+	List size after removing: 14
+Consumer2:
+	List size before removing: 14
+	Value of node removed: 26
+	List size after removing: 13
+Consumer1:
+	List size before removing: 13
+	Value of node removed: 7
+	List size after removing: 12
+Consumer2:
+	List size before removing: 12
+	Value of node removed: 32
+	List size after removing: 11
+Consumer1:
+	List size before removing: 11
+	Value of node removed: 33
+	List size after removing: 10
+Consumer2:
+	List size before removing: 10
+	Value of node removed: 24
+	List size after removing: 9
+Consumer1:
+	List size before removing: 9
+	Value of node removed: 41
+	List size after removing: 8
+Consumer2:
+	List size before removing: 8
+	Value of node removed: 44
+	List size after removing: 7
+Consumer1:
+	List size before removing: 7
+	Value of node removed: 47
+	List size after removing: 6
+Consumer2:
+	List size before removing: 6
+	Value of node removed: 28
+	List size after removing: 5
+Consumer1:
+	List size before removing: 5
+	Value of node removed: 47
+	List size after removing: 4
+Consumer2:
+	List size before removing: 4
+	Value of node removed: 24
+	List size after removing: 3
+Consumer1:
+	List size before removing: 3
+	Value of node removed: 39
+	List size after removing: 2
+Consumer2:
+	List size before removing: 2
+	Value of node removed: 30
+	List size after removing: 1
+Consumer1:
+	List size before removing: 1
+	Value of node removed: 1
+	List size after removing: 0

@@ -21,6 +21,7 @@ struct Linked_List {
 
 pthread_mutex_t lock;
 
+// function to add a node to the end of the linked list
 void append(struct Linked_List* linkedlist, int new_value)
 {
     struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
@@ -44,6 +45,7 @@ void append(struct Linked_List* linkedlist, int new_value)
     return;
 }
 
+// function to delete the fist element in the linked list
 void deleteFront(struct Linked_List* linkedlist)
 {
     struct Node* to_delete = linkedlist->head;
@@ -65,6 +67,7 @@ void deleteFront(struct Linked_List* linkedlist)
     return;
 }
 
+// producer 1 method (add an odd node to list)
 void *producer1Runner(void *linkedlist)
 {
     srand(time(0));
@@ -72,20 +75,20 @@ void *producer1Runner(void *linkedlist)
     
     while(list->curr_size < 30)
     {
+        pthread_mutex_lock(&lock);
         printf("Producer1:\n");
         printf("\tList size before appending: %d\n", list->curr_size);
-        pthread_mutex_lock(&lock);
         int rand_num = ((1 + rand() % 48));
-        if(rand_num % 2 == 0) { rand_num++; }
+        if(rand_num % 2 == 0) { rand_num++; } // if value is even, add 1
         append(list, rand_num);
         printf("\tValue of node appended: %d\n", rand_num);
         printf("\tList size after appending: %d\n", list->curr_size);
         pthread_mutex_unlock(&lock);
     }
-    
     return 0;
 }
 
+// producer 2 method (add an even node to list)
 void *producer2Runner(void* linkedlist)
 {
     srand(time(0));
@@ -93,20 +96,20 @@ void *producer2Runner(void* linkedlist)
     
     while(list->curr_size < 30)
     {
+        pthread_mutex_lock(&lock);
         printf("Producer2:\n");
         printf("\tList size before appending: %d\n", list->curr_size);
-        pthread_mutex_lock(&lock);
         int rand_num = ((1 + rand() % 49));
-        if(rand_num % 2 == 1) { rand_num++; }
+        if(rand_num % 2 == 1) { rand_num++; } // if value is odd, add 1
         append(list, rand_num);
         printf("\tValue of node appended: %d\n", rand_num);
         printf("\tList size after appending: %d\n", list->curr_size);
         pthread_mutex_unlock(&lock);
     }
-    
     return 0;
 }
 
+// consumer 1 method (delete first odd node in list)
 void *consumer1Runner(void* linkedlist)
 {
     struct Linked_List* list = (struct Linked_List*)linkedlist;
@@ -115,20 +118,20 @@ void *consumer1Runner(void* linkedlist)
     {
         if(list->head->value % 2 == 1) // if first node in the list is odd
         {
+            pthread_mutex_lock(&lock);
             printf("Consumer1:\n");
             printf("\tList size before removing: %d\n", list->curr_size);
-            pthread_mutex_lock(&lock);
             int value_deleted = list->head->value;
             deleteFront(list);
             printf("\tValue of node removed: %d\n", value_deleted);
-            printf("\tList size after appending: %d\n", list->curr_size);
+            printf("\tList size after removing: %d\n", list->curr_size);
             pthread_mutex_unlock(&lock);
         }
     }
-    
     return 0;
 }
 
+// consumer 2 method (delete first even node in list)
 void *consumer2Runner(void* linkedlist)
 {
     struct Linked_List* list = (struct Linked_List*)linkedlist;
@@ -137,17 +140,16 @@ void *consumer2Runner(void* linkedlist)
     {
         if(list->head->value % 2 == 0) // if first node in the list is even
         {
+            pthread_mutex_lock(&lock);
             printf("Consumer2:\n");
             printf("\tList size before removing: %d\n", list->curr_size);
-            pthread_mutex_lock(&lock);
             int value_deleted = list->head->value;
             deleteFront(list);
             printf("\tValue of node removed: %d\n", value_deleted);
-            printf("\tList size after appending: %d\n", list->curr_size);
+            printf("\tList size after removing: %d\n", list->curr_size);
             pthread_mutex_unlock(&lock);
         }
     }
-    
     return 0;
 }
 

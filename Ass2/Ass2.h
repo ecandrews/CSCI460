@@ -19,6 +19,8 @@ struct Linked_List {
     struct Node* end;
 };
 
+pthread_mutex_t lock;
+
 void append(struct Linked_List* linkedlist, int new_value)
 {
     struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
@@ -63,42 +65,88 @@ void deleteFront(struct Linked_List* linkedlist)
     return;
 }
 
-void *producer1Runner(void* linkedlist)
+void *producer1Runner(void *linkedlist)
 {
-    // generate a node and append it
-    // odd integer less than 50
-    // if buffer (?) is full
-    // printf("producer1 waiting...\n");
+    srand(time(0));
+    struct Linked_List* list = (struct Linked_List*)linkedlist;
+    
+    while(list->curr_size < 30)
+    {
+        printf("Producer1:\n");
+        printf("\tList size before appending: %d\n", list->curr_size);
+        pthread_mutex_lock(&lock);
+        int rand_num = ((1 + rand() % 48));
+        if(rand_num % 2 == 0) { rand_num++; }
+        append(list, rand_num);
+        printf("\tValue of node appended: %d\n", rand_num);
+        printf("\tList size after appending: %d\n", list->curr_size);
+        pthread_mutex_unlock(&lock);
+    }
     
     return 0;
 }
 
 void *producer2Runner(void* linkedlist)
 {
-    // generate a node and append it
-    // even integer less than 50
-    // if buffer (?) is full
-    // printf("producer2 waiting...\n");
+    srand(time(0));
+    struct Linked_List* list = (struct Linked_List*)linkedlist;
+    
+    while(list->curr_size < 30)
+    {
+        printf("Producer2:\n");
+        printf("\tList size before appending: %d\n", list->curr_size);
+        pthread_mutex_lock(&lock);
+        int rand_num = ((1 + rand() % 49));
+        if(rand_num % 2 == 1) { rand_num++; }
+        append(list, rand_num);
+        printf("\tValue of node appended: %d\n", rand_num);
+        printf("\tList size after appending: %d\n", list->curr_size);
+        pthread_mutex_unlock(&lock);
+    }
     
     return 0;
 }
 
 void *consumer1Runner(void* linkedlist)
 {
-    // if first node is odd, delete it from front of list
-    // else wait
-    // if buffer (?) is empty
-    // printf("consumer1 waiting...\n");
+    struct Linked_List* list = (struct Linked_List*)linkedlist;
+    
+    while(list->curr_size > 0)
+    {
+        if(list->head->value % 2 == 1) // if first node in the list is odd
+        {
+            printf("Consumer1:\n");
+            printf("\tList size before removing: %d\n", list->curr_size);
+            pthread_mutex_lock(&lock);
+            int value_deleted = list->head->value;
+            deleteFront(list);
+            printf("\tValue of node removed: %d\n", value_deleted);
+            printf("\tList size after appending: %d\n", list->curr_size);
+            pthread_mutex_unlock(&lock);
+        }
+    }
     
     return 0;
 }
 
 void *consumer2Runner(void* linkedlist)
 {
-    // if first node is even, delete it from front of list
-    // else wait
-    // if buffer (?) is empty
-    // printf("consumer2 waiting...\n");
+    struct Linked_List* list = (struct Linked_List*)linkedlist;
+    
+    while(list->curr_size > 0)
+    {
+        if(list->head->value % 2 == 0) // if first node in the list is even
+        {
+            printf("Consumer2:\n");
+            printf("\tList size before removing: %d\n", list->curr_size);
+            pthread_mutex_lock(&lock);
+            int value_deleted = list->head->value;
+            deleteFront(list);
+            printf("\tValue of node removed: %d\n", value_deleted);
+            printf("\tList size after appending: %d\n", list->curr_size);
+            pthread_mutex_unlock(&lock);
+        }
+    }
     
     return 0;
 }
@@ -115,6 +163,9 @@ int main(int argc, char *argv[])
     append(linkedList, (rand() % (50 + 1)));
     append(linkedList, (rand() % (50 + 1)));
     
+    // initialize mutex
+    pthread_mutex_init(&lock, NULL);
+    
     // declare and initialize producer and consumer threads
     pthread_t producer1;
     pthread_t producer2;
@@ -125,13 +176,13 @@ int main(int argc, char *argv[])
     pthread_create(&consumer1, NULL, consumer1Runner, (void *) linkedList);
     pthread_create(&consumer2, NULL, consumer2Runner, (void *) linkedList);
     
-    printf("hellooooooooo\n");
-    
     // join all threads
     pthread_join(producer1, NULL);
     pthread_join(producer2, NULL);
     pthread_join(consumer1, NULL);
     pthread_join(consumer2, NULL);
+    pthread_mutex_destroy(&lock);
+    
     return 0;
 }
 

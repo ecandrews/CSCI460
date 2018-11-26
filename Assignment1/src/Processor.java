@@ -7,15 +7,15 @@ import java.util.ArrayList;
 public class Processor {
 
     private boolean isBusy;
-    private Job currentJob;
-    private ArrayList<Job> jobQueue = new ArrayList<>();
+    private HW1Job currentJob;
+    private ArrayList<HW1Job> jobQueue = new ArrayList<>();
 
     public Processor() {
         this.isBusy = false;
         this.currentJob = null;
     }
 
-    public void setCurrentJob(Job currentJob, int startTime) {
+    public void setCurrentJob(HW1Job currentJob, int startTime) {
         currentJob.setStartTime(startTime);
         currentJob.setEndTime(currentJob.getStartTime() + currentJob.getProcessingTime());
         this.currentJob = currentJob;
@@ -29,7 +29,7 @@ public class Processor {
         this.isBusy = false;
     }
 
-    public void addJobToQueue(Job jobToAdd) {
+    public void addJobToQueue(HW1Job jobToAdd) {
         jobQueue.add(jobToAdd);
     }
 
@@ -38,6 +38,6 @@ public class Processor {
     }
 
     public boolean getIsBusy() { return this.isBusy; }
-    public Job getCurrentJob() { return this.currentJob; }
-    public ArrayList<Job> getJobQueue() { return jobQueue; }
+    public HW1Job getCurrentJob() { return this.currentJob; }
+    public ArrayList<HW1Job> getJobQueue() { return jobQueue; }
 }

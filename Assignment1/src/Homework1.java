@@ -12,11 +12,11 @@ public class Homework1 {
     private static Processor proc2;
     private static Processor proc3;
     private static Processor[] procArray;
-    private static List<Job> jobsWaiting = new ArrayList();
-    private static List<Job> jobList1 = new ArrayList();
-    private static List<Job> jobList2 = new ArrayList();
-    private static List<Job> jobList3 = new ArrayList();
-    private static List<Job> jobList4 = new ArrayList();
+    private static List<HW1Job> jobsWaiting = new ArrayList();
+    private static List<HW1Job> jobList1 = new ArrayList();
+    private static List<HW1Job> jobList2 = new ArrayList();
+    private static List<HW1Job> jobList3 = new ArrayList();
+    private static List<HW1Job> jobList4 = new ArrayList();
 
     public static void main(String [] args) {
         partB1();
@@ -28,7 +28,7 @@ public class Homework1 {
     Run the jobs given in jobList using a circular procedure with three processors
     Returns the number of milliseconds since procedure began
      */
-    public static int runJobs(List<Job> jobList) {
+    public static int runJobs(List<HW1Job> jobList) {
         // instantiate processors, processor array, and other variables
         proc1 = new Processor();
         proc2 = new Processor();
@@ -36,7 +36,7 @@ public class Homework1 {
         procArray = new Processor[] { proc1, proc2, proc3 };
         int ms = 0;
         int nextProc = 0;
-        Job lastJob = jobList.get(jobList.size() - 1);
+        HW1Job lastJob = jobList.get(jobList.size() - 1);
 
         // continue to run while the last job in the jobList has not been completed
         while(lastJob.getCompleted() != true) {
@@ -82,7 +82,7 @@ public class Homework1 {
     Run the jobs given in jobList using a faster procedure with three processors
     Returns the number of milliseconds since procedure began
      */
-    public static int runJobsPartC(List<Job> jobList) {
+    public static int runJobsPartC(List<HW1Job> jobList) {
         // instantiate processors, processor array, and other variables
         proc1 = new Processor();
         proc2 = new Processor();
@@ -90,7 +90,7 @@ public class Homework1 {
         procArray = new Processor[] { proc1, proc2, proc3 };
         int ms = 0;
         int nextProc = 0;
-        Job lastJob = jobList.get(jobList.size() - 1);
+        HW1Job lastJob = jobList.get(jobList.size() - 1);
 
         // continue to run while the last job in the jobList has not been completed
         while(lastJob.getCompleted() != true) {
@@ -147,7 +147,7 @@ public class Homework1 {
             // initialize jobs, add them to the jobList, and run
             for(int j = 0; j < 100; j++) {
                 int procTime = rand.nextInt((500 - 1) + 1) + 1;
-                jobList1.add(new Job(j, procTime));
+                jobList1.add(new HW1Job(j, procTime));
             }
             startTime = jobList1.get(0).getArrivalTime();
             int finalRunTime = runJobs(jobList1) - startTime;
@@ -169,29 +169,29 @@ public class Homework1 {
 
     public static void partB2() {
         // initialize jobs, add them to the jobList, and run
-        Job job1 = new Job(4,9);
+        HW1Job job1 = new HW1Job(4,9);
         jobList2.add(job1);
-        Job job2 = new Job(15, 2);
+        HW1Job job2 = new HW1Job(15, 2);
         jobList2.add(job2);
-        Job job3 = new Job(18, 16);
+        HW1Job job3 = new HW1Job(18, 16);
         jobList2.add(job3);
-        Job job4 = new Job(20, 3);
+        HW1Job job4 = new HW1Job(20, 3);
         jobList2.add(job4);
-        Job job5 = new Job(26, 29);
+        HW1Job job5 = new HW1Job(26, 29);
         jobList2.add(job5);
-        Job job6 = new Job(29, 198);
+        HW1Job job6 = new HW1Job(29, 198);
         jobList2.add(job6);
-        Job job7 = new Job(35, 7);
+        HW1Job job7 = new HW1Job(35, 7);
         jobList2.add(job7);
-        Job job8 = new Job(45, 170);
+        HW1Job job8 = new HW1Job(45, 170);
         jobList2.add(job8);
-        Job job9 = new Job(57, 180);
+        HW1Job job9 = new HW1Job(57, 180);
         jobList2.add(job9);
-        Job job10 = new Job(83, 178);
+        HW1Job job10 = new HW1Job(83, 178);
         jobList2.add(job10);
-        Job job11 = new Job(88, 73);
+        HW1Job job11 = new HW1Job(88, 73);
         jobList2.add(job11);
-        Job job12 = new Job(95, 8);
+        HW1Job job12 = new HW1Job(95, 8);
         jobList2.add(job12);
         int finalRunTime = runJobs(jobList2);
 
@@ -216,7 +216,7 @@ public class Homework1 {
             // initialize jobs, add them to the jobList, and run
             for(int j = 0; j < 100; j++) {
                 int procTime = rand.nextInt((500 - 1) + 1) + 1;
-                jobList3.add(new Job(j, procTime));
+                jobList3.add(new HW1Job(j, procTime));
             }
             startTime = jobList3.get(0).getArrivalTime();
             int part1finalRunTime = runJobsPartC(jobList3) - startTime;
@@ -227,29 +227,29 @@ public class Homework1 {
             sumRunTime = sumRunTime + part1finalRunTime;
         }
 
-        Job job1 = new Job(4,9);
+        HW1Job job1 = new HW1Job(4,9);
         jobList4.add(job1);
-        Job job2 = new Job(15, 2);
+        HW1Job job2 = new HW1Job(15, 2);
         jobList4.add(job2);
-        Job job3 = new Job(18, 16);
+        HW1Job job3 = new HW1Job(18, 16);
         jobList4.add(job3);
-        Job job4 = new Job(20, 3);
+        HW1Job job4 = new HW1Job(20, 3);
         jobList4.add(job4);
-        Job job5 = new Job(26, 29);
+        HW1Job job5 = new HW1Job(26, 29);
         jobList4.add(job5);
-        Job job6 = new Job(29, 198);
+        HW1Job job6 = new HW1Job(29, 198);
         jobList4.add(job6);
-        Job job7 = new Job(35, 7);
+        HW1Job job7 = new HW1Job(35, 7);
         jobList4.add(job7);
-        Job job8 = new Job(45, 170);
+        HW1Job job8 = new HW1Job(45, 170);
         jobList4.add(job8);
-        Job job9 = new Job(57, 180);
+        HW1Job job9 = new HW1Job(57, 180);
         jobList4.add(job9);
-        Job job10 = new Job(83, 178);
+        HW1Job job10 = new HW1Job(83, 178);
         jobList4.add(job10);
-        Job job11 = new Job(88, 73);
+        HW1Job job11 = new HW1Job(88, 73);
         jobList4.add(job11);
-        Job job12 = new Job(95, 8);
+        HW1Job job12 = new HW1Job(95, 8);
         jobList4.add(job12);
         int part2minRunTime = runJobsPartC(jobList4);
 

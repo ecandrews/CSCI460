@@ -17,5 +17,6 @@ public class Job1 implements JobInterface {
 
     public void printResult() {
         System.out.println("test print job1");
+        System.out.println("T1 111 T1");
     }
 }

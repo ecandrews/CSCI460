@@ -2,7 +2,7 @@
 Author: Elizabeth Andrews
 Written for CSCI460 - Operating Systems at Montana State University
  */
-public class Job {
+public class HW1Job {
 
     private int arrivalTime;
     private int processingTime;
@@ -10,7 +10,7 @@ public class Job {
     private int endTime;
     private boolean completed;
 
-    public Job(int arrivalTime, int processingTime) {
+    public HW1Job(int arrivalTime, int processingTime) {
         this.arrivalTime = arrivalTime;
         this.processingTime = processingTime;
         this.completed = false;

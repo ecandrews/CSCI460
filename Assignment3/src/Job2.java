@@ -10,6 +10,7 @@ public class Job2 implements JobInterface {
     private int timeLeftToRun = 10;
     private int arrivalTime = 0;
     private boolean isComplete = false;
+    private int timeStarted = 0;
 
     public Job2(int arrivalTime) { this.arrivalTime = arrivalTime; }
 
@@ -21,20 +22,26 @@ public class Job2 implements JobInterface {
         this.priority = priority;
     }
 
-    public void setMsTaken(int newMS) {
-        this.msTaken = newMS;
+    public int getArrivalTime() { return this.arrivalTime; }
+
+    public void setMSTaken(int msTaken) {
+        this.msTaken = msTaken;
     }
+
+    public int getMSTaken() { return this.msTaken; }
 
     public int getTimeLeftToRun() { return this.timeLeftToRun; }
 
-    public boolean isComplete() { return isComplete; }
+    public void setTimeLeftToRun(int left) { this.timeLeftToRun = left; }
+
+    public void setTimeStarted(int finalTime) { this.timeStarted = finalTime; }
 
     public void printResult() {
-        System.out.println("test print job2");
+        System.out.print("time " + this.timeStarted + ", ");
         System.out.print("T2 ");
         for(int i = 0; i < this.msTaken; i++) {
-            System.out.print("N");
+            System.out.print("N ");
         }
-        System.out.println(" T2");
+        System.out.println("T2");
     }
 }

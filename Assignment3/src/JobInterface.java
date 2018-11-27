@@ -8,5 +8,5 @@ public interface JobInterface {
     public int getPriority();
     public void setPriority(int priority);
     public void printResult();
-
+    public boolean isComplete();
 }

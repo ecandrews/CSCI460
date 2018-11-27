@@ -5,8 +5,13 @@ Written for CSCI460 - Operating Systems at Montana State University
 
 public class Job2 implements JobInterface {
 
-    public int priority = 2;
-    public int msTaken = 0;
+    private int priority = 2;
+    private int msTaken = 0;
+    private int timeLeftToRun = 10;
+    private int arrivalTime = 0;
+    private boolean isComplete = false;
+
+    public Job2(int arrivalTime) { this.arrivalTime = arrivalTime; }
 
     public int getPriority() {
         return this.priority;
@@ -19,6 +24,10 @@ public class Job2 implements JobInterface {
     public void setMsTaken(int newMS) {
         this.msTaken = newMS;
     }
+
+    public int getTimeLeftToRun() { return this.timeLeftToRun; }
+
+    public boolean isComplete() { return isComplete; }
 
     public void printResult() {
         System.out.println("test print job2");

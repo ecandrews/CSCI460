@@ -9,17 +9,12 @@ public class Job2 implements JobInterface {
     private int msTaken = 0;
     private int timeLeftToRun = 10;
     private int arrivalTime = 0;
-    private boolean isComplete = false;
     private int timeStarted = 0;
 
     public Job2(int arrivalTime) { this.arrivalTime = arrivalTime; }
 
     public int getPriority() {
         return this.priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
     }
 
     public int getArrivalTime() { return this.arrivalTime; }

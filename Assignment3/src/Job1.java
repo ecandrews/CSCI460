@@ -8,7 +8,6 @@ public class Job1 implements JobInterface {
     private int priority = 3;
     private int timeLeftToRun = 3;
     private int arrivalTime = 0;
-    private boolean isComplete = false;
     private int timeStarted = 0;
 
     public Job1(int arrivalTime) { this.arrivalTime = arrivalTime; }
@@ -17,9 +16,6 @@ public class Job1 implements JobInterface {
         return this.priority;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
 
     public int getArrivalTime() { return this.arrivalTime; }
 

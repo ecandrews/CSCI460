@@ -21,6 +21,8 @@ public class Job3 implements JobInterface {
 
     public int getArrivalTime() { return this.arrivalTime; }
 
+    public void setArrivalTime(int newTime) { this.arrivalTime = newTime; }
+
     public void setTimeLeftToRun(int left) { this.timeLeftToRun = left; }
 
     public int getTimeLeftToRun() { return this.timeLeftToRun; }

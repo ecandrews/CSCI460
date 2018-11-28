@@ -24,6 +24,8 @@ public class Job2 implements JobInterface {
 
     public int getArrivalTime() { return this.arrivalTime; }
 
+    public void setArrivalTime(int newTime) { this.arrivalTime = newTime; }
+
     public void setMSTaken(int msTaken) {
         this.msTaken = msTaken;
     }

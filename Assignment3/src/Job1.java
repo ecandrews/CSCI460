@@ -23,6 +23,8 @@ public class Job1 implements JobInterface {
 
     public int getArrivalTime() { return this.arrivalTime; }
 
+    public void setArrivalTime(int newTime) { this.arrivalTime = newTime; }
+
     public int getTimeLeftToRun() { return this.timeLeftToRun; }
 
     public void setTimeLeftToRun(int left) { this.timeLeftToRun = left; }

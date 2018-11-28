@@ -10,6 +10,7 @@ public interface JobInterface {
     public void setMSTaken(int msTaken);
     public int getMSTaken();
     public int getArrivalTime();
+    public void setArrivalTime(int newTime);
     public void printResult();
     public void setTimeStarted(int finalTime);
     public int getTimeLeftToRun();

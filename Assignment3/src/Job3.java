@@ -32,6 +32,6 @@ public class Job3 implements JobInterface {
 
     public void printResult() {
         System.out.print("time " + this.timeStarted + ", ");
-        System.out.println("T3 333 T3");
+        System.out.println("T3 3 3 3 T3");
     }
 }

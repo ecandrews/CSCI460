@@ -3,15 +3,15 @@ Author: Elizabeth Andrews
 Written for CSCI460 - Operating Systems at Montana State University
  */
 
+// interface describing the three different jobs
 public interface JobInterface {
-
-    public int getPriority();
-    public void setMSTaken(int msTaken);
-    public int getMSTaken();
-    public int getArrivalTime();
-    public void setArrivalTime(int newTime);
-    public void printResult();
-    public void setTimeStarted(int finalTime);
-    public int getTimeLeftToRun();
-    public void setTimeLeftToRun(int left);
+    int getPriority();
+    void setMSTaken(int msTaken);
+    int getMSTaken();
+    int getArrivalTime();
+    void setArrivalTime(int newTime);
+    void printResult();
+    void setTimeStarted(int finalTime);
+    int getTimeLeftToRun();
+    void setTimeLeftToRun(int left);
 }

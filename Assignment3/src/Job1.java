@@ -16,7 +16,6 @@ public class Job1 implements JobInterface {
         return this.priority;
     }
 
-
     public int getArrivalTime() { return this.arrivalTime; }
 
     public void setArrivalTime(int newTime) { this.arrivalTime = newTime; }

@@ -26,7 +26,7 @@ public class Job3 implements JobInterface {
 
     public void setTimeStarted(int finalTime) { this.timeStarted = finalTime; }
 
-    public void setMSTaken(int newTime){}
+    public void setMSTaken(int msTaken) { }
 
     public int getMSTaken() { return 0; }
 
@@ -34,4 +34,5 @@ public class Job3 implements JobInterface {
         System.out.print("time " + this.timeStarted + ", ");
         System.out.println("T3 3 3 3 T3");
     }
+
 }

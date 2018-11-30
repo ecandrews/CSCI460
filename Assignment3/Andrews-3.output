@@ -1,0 +1,10 @@
+Output for part1:
+time 1, T1 1 1 1 T1
+time 6, T3 3 3 3 T3
+time 7, T2 N N N N N N N N N N T2
+
+Output for part2:
+time 1, T3 3 3 3 T3
+time 3, T2 N N N N N T2
+time 12, T3 3 3 3 T3
+time 26, T1 1 1 1 T1
